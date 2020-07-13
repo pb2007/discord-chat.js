@@ -36,6 +36,7 @@ async function exitHandler(code) {
 	let brkch = await client.channels.cache.get(channelid)
 	await brkch.send(`${gamename} is shutting down.`)
 	await client.setStatus("idle")
+	await client.user.setActivity("Shutting down...")
 	console.log("[discord-chat] Finished all tasks; shutting down.")
 	Game.shutdown()
 }
@@ -58,6 +59,7 @@ function cmdProcess(msg,cmd) {
 			break
 		case 'version':
 			msg.reply("This game is currently using discord-chat v2.")
+			break
 	}
 }
 
