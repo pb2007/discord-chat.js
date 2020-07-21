@@ -81,7 +81,7 @@ client.once("ready", async() => {
 
 // discord -> brick hill
 client.on("message", async(message) => {
-	if (message.channel.id = channelid) {
+	if (message.channel.id === channelid) {
 		if (message.author.bot) return;
 		// Process commands
 		switch (message.content) {
