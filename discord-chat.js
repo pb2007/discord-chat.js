@@ -9,16 +9,16 @@
 // }
 
 // Settings \\
-const gamename = ""     // The name of your game.
+const gamename = ""      // The name of your game.
 
-const guildid = ""      // The ID of your server (called guilds internally). Used for nicknames and such
-const channelid = ""    // The ID of your channel. Used for sending to the channel, duh!
-const prefix = "p!"     // The prefix used for some chat commands in Discord.
+const guildid = ""       // The ID of your server (called guilds internally). Used for nicknames and such
+const channelid = ""     // The ID of your channel. Used for sending to the channel, duh!
+const prefix = "p!"      // The prefix used for some chat commands in Discord.
 
 const showInvite = false // Whether or not to show an invite to your server on join.
-const invite = "" // An invite to your server.
+const invite = ""        // An invite to your server.
 
-const tkn = ""          // The token for your bot. DO NOT SHARE THIS WITH ANYONE.
+const tkn = ""           // The token for your bot.
 // Settings end \\
 
 const client = new Discord.Client()
