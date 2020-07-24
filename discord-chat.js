@@ -23,6 +23,24 @@ const tkn = ""           // The token for your bot.
 
 const client = new Discord.Client()
 
+const commands = {
+	count: (msg) => {
+		msg.reply((Game.playerCount === 1 ? "1 player is" : `${Game.playerCount} players are`) + " in the game right now.")
+	},
+	list: (msg) => {
+		let plist = '```\n'
+		Game.players.forEach(v => {
+			plist += `${v.username}\n`
+		})
+		plist += '```'
+		msg.reply("The player list is as follows:\n"+plist)
+	},
+	version: (msg) => {
+		msg.reply("This game is currently using discord-chat v2.1.")
+	}
+}
+	
+
 // Functions \\
 
 function prettycount() {
@@ -39,28 +57,6 @@ async function exitHandler(code) {
 	await client.user.setActivity("Shutting down...")
 	console.log("[discord-chat] Finished all tasks; shutting down.")
 	Game.shutdown()
-}
-
-// Processes chat commands
-function cmdProcess(msg,cmd) {
-	switch (cmd) {
-		case 'count':
-			msg.reply((Game.playerCount === 1 ? "1 player is" : `${Game.playerCount} players are`) + " in the game right now.")
-			break
-		case 'list':
-			// formulate the list
-			let plist = "```\n"
-			Game.players.forEach(v => {
-				plist += `${v.username}\n`
-			})
-			plist += "```"
-			// reply
-			msg.reply("The player list is as follows:\n"+plist)
-			break
-		case 'version':
-			msg.reply("This game is currently using discord-chat v2.")
-			break
-	}
 }
 
 // Functions end \\
@@ -84,16 +80,17 @@ client.on("message", async(message) => {
 	if (message.channel.id === channelid) {
 		if (message.author.bot) return;
 		// Process commands
+		// this will be better later
 		switch (message.content) {
 			case `${prefix}count`:
-				cmdProcess(message,"count")
+				commands.count(message)
 				return
 			case `${prefix}list`:
 			case `${prefix}players`:
-				cmdProcess(message,"list")
+				commands.list(message)
 				return
 			case `${prefix}version`:
-				cmdProcess(message,"version")
+				commands.version(message)
 				return
 		}
 
